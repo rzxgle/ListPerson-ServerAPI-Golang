@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DepartmentService_ListPersoon_FullMethodName = "/department.DepartmentService/ListPersoon"
+	DepartmentService_ListPerson_FullMethodName = "/department.DepartmentService/ListPerson"
 )
 
 // DepartmentServiceClient is the client API for DepartmentService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DepartmentServiceClient interface {
-	ListPersoon(ctx context.Context, in *ListPersonRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ListPersonResponse], error)
+	ListPerson(ctx context.Context, in *ListPersonRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ListPersonResponse], error)
 }
 
 type departmentServiceClient struct {
@@ -37,9 +37,9 @@ func NewDepartmentServiceClient(cc grpc.ClientConnInterface) DepartmentServiceCl
 	return &departmentServiceClient{cc}
 }
 
-func (c *departmentServiceClient) ListPersoon(ctx context.Context, in *ListPersonRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ListPersonResponse], error) {
+func (c *departmentServiceClient) ListPerson(ctx context.Context, in *ListPersonRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ListPersonResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &DepartmentService_ServiceDesc.Streams[0], DepartmentService_ListPersoon_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &DepartmentService_ServiceDesc.Streams[0], DepartmentService_ListPerson_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -54,13 +54,13 @@ func (c *departmentServiceClient) ListPersoon(ctx context.Context, in *ListPerso
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DepartmentService_ListPersoonClient = grpc.ServerStreamingClient[ListPersonResponse]
+type DepartmentService_ListPersonClient = grpc.ServerStreamingClient[ListPersonResponse]
 
 // DepartmentServiceServer is the server API for DepartmentService service.
 // All implementations must embed UnimplementedDepartmentServiceServer
 // for forward compatibility.
 type DepartmentServiceServer interface {
-	ListPersoon(*ListPersonRequest, grpc.ServerStreamingServer[ListPersonResponse]) error
+	ListPerson(*ListPersonRequest, grpc.ServerStreamingServer[ListPersonResponse]) error
 	mustEmbedUnimplementedDepartmentServiceServer()
 }
 
@@ -71,8 +71,8 @@ type DepartmentServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDepartmentServiceServer struct{}
 
-func (UnimplementedDepartmentServiceServer) ListPersoon(*ListPersonRequest, grpc.ServerStreamingServer[ListPersonResponse]) error {
-	return status.Errorf(codes.Unimplemented, "method ListPersoon not implemented")
+func (UnimplementedDepartmentServiceServer) ListPerson(*ListPersonRequest, grpc.ServerStreamingServer[ListPersonResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method ListPerson not implemented")
 }
 func (UnimplementedDepartmentServiceServer) mustEmbedUnimplementedDepartmentServiceServer() {}
 func (UnimplementedDepartmentServiceServer) testEmbeddedByValue()                           {}
@@ -95,16 +95,16 @@ func RegisterDepartmentServiceServer(s grpc.ServiceRegistrar, srv DepartmentServ
 	s.RegisterService(&DepartmentService_ServiceDesc, srv)
 }
 
-func _DepartmentService_ListPersoon_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _DepartmentService_ListPerson_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ListPersonRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DepartmentServiceServer).ListPersoon(m, &grpc.GenericServerStream[ListPersonRequest, ListPersonResponse]{ServerStream: stream})
+	return srv.(DepartmentServiceServer).ListPerson(m, &grpc.GenericServerStream[ListPersonRequest, ListPersonResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DepartmentService_ListPersoonServer = grpc.ServerStreamingServer[ListPersonResponse]
+type DepartmentService_ListPersonServer = grpc.ServerStreamingServer[ListPersonResponse]
 
 // DepartmentService_ServiceDesc is the grpc.ServiceDesc for DepartmentService service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -115,8 +115,8 @@ var DepartmentService_ServiceDesc = grpc.ServiceDesc{
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "ListPersoon",
-			Handler:       _DepartmentService_ListPersoon_Handler,
+			StreamName:    "ListPerson",
+			Handler:       _DepartmentService_ListPerson_Handler,
 			ServerStreams: true,
 		},
 	},

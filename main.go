@@ -17,7 +17,7 @@ type server struct {
 	department.DepartmentServiceServer
 }
 
-func (s *server) ListPerson(req *department.ListPersonRequest, srv department.DepartmentService_ListPersoonServer) error {
+func (s *server) ListPerson(req *department.ListPersonRequest, srv department.DepartmentService_ListPersonServer) error {
 	file, err := os.Open("./data.csv")
 	if err != nil {
 		return fmt.Errorf("error on open file. error: %v", err)
