@@ -50,7 +50,7 @@ func (s *server) ListPerson(req *department.ListPersonRequest, srv department.De
 
 func main() {
 	fmt.Println("starting grpc server")
-	listener, err := net.Listen("tcp", ":9010")
+	listener, err := net.Listen("tcp", ":9090")
 	if err != nil {
 		log.Fatalln("error on get listener. error: ", err)
 	}
